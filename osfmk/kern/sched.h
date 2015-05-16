@@ -257,6 +257,22 @@ struct grrr_run_queue {
 
 #endif /* defined(CONFIG_SCHED_GRRR_CORE) */
 
+#if defined(CONFIG_SCHED_DWRR)
+struct dwrr_run_queue {
+    uint64_t round_number;
+
+    uint32_t count;
+
+    queue_head_t queue_a;
+    queue_head_t queue_b;
+
+    queue_t active_queue;
+    queue_t expired_queue;
+
+    struct runq_stats runq_stats;
+};
+#endif
+
 #define first_timeslice(processor)		((processor)->timeslice > 0)
 
 extern struct rt_queue		rt_runq;

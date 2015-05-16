@@ -557,6 +557,13 @@ sched_init(void)
 			strlcpy(sched_string, kSchedFixedPriorityWithPsetRunqueueString, sizeof(sched_string));
 			kprintf("Scheduler: Runtime selection of %s\n", kSchedFixedPriorityWithPsetRunqueueString);
 #endif
+#if defined(CONFIG_SCHED_DWRR)
+		} else if (0 == strcmp(sched_arg, kSchedDWRRString)) {
+			sched_current_dispatch = &sched_dwrr_dispatch;
+			_sched_enum = sched_enum_dwrr;
+			strlcpy(sched_string, kSchedDWRRString, sizeof(sched_string));
+			printf("Scheduler: Runtime selection of %s\n", kSchedDWRRString);
+#endif
 		} else {
 			panic("Unrecognized scheduler algorithm: %s", sched_arg);
 		}
@@ -581,6 +588,11 @@ sched_init(void)
 		_sched_enum = sched_enum_fixedpriority;
 		strlcpy(sched_string, kSchedFixedPriorityString, sizeof(sched_string));
 		kprintf("Scheduler: Default of %s\n", kSchedFixedPriorityString);
+#elif define(CONFIG_SCHED_DWRR)
+        sched_current_dispatch = &sched_dwrr_dispatch;
+        _sched_enum = sched_enum_dwrr;
+        strlcpy(sched_string, kSchedDWRRString, sizeof(sched_string));
+        kprintf("Scheduler: Default of %s\n", kSchedDWRRString);
 #else
 #error No default scheduler implementation
 #endif
@@ -2897,7 +2909,7 @@ run_queue_init(
 		queue_init(&rq->queues[i]);
 }
 
-#if defined(CONFIG_SCHED_TRADITIONAL) || defined(CONFIG_SCHED_PROTO) || defined(CONFIG_SCHED_GRRR) || defined(CONFIG_SCHED_FIXEDPRIORITY)
+#if defined(CONFIG_SCHED_TRADITIONAL) || defined(CONFIG_SCHED_PROTO) || defined(CONFIG_SCHED_GRRR) || defined(CONFIG_SCHED_FIXEDPRIORITY) || defined(CONFIG_SCHED_DWRR)
 int
 sched_traditional_fairshare_runq_count(void)
 {

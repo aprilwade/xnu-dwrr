@@ -622,6 +622,11 @@ extern const struct sched_dispatch_table sched_fixedpriority_dispatch;
 extern const struct sched_dispatch_table sched_fixedpriority_with_pset_runqueue_dispatch;
 #endif
 
+#ifdef CONFIG_SCHED_DWRR
+#define kSchedDWRRString "dwrr"
+extern const struct sched_dispatch_table sched_dwrr_dispatch;
+#endif
+
 /*
  * It is an error to invoke any scheduler-related code
  * before this is set up
@@ -642,7 +647,10 @@ enum sched_enum {
 	sched_enum_fixedpriority = 5,
 	sched_enum_fixedpriority_with_pset_runqueue = 6,
 #endif
-	sched_enum_max = 7
+#if defined(CONFIG_SCHED_DWRR)
+    sched_enum_dwrr = 7,
+#endif
+	sched_enum_max = 8
 };
 
 extern const struct sched_dispatch_table *sched_current_dispatch;

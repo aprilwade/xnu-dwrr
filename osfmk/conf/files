@@ -157,6 +157,7 @@ osfmk/kern/sched_average.c		standard
 osfmk/kern/sched_prim.c		standard
 osfmk/kern/sched_proto.c	optional config_sched_proto
 osfmk/kern/sched_grrr.c	optional config_sched_grrr_core
+osfmk/kern/sched_dwrr.c	optional config_sched_dwrr
 osfmk/kern/sched_fixedpriority.c	optional config_sched_fixedpriority
 osfmk/kern/security.c		optional config_macf
 osfmk/kern/stack.c			standard

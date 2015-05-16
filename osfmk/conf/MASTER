@@ -271,6 +271,7 @@ options		CONFIG_SCHED_PROTO		# <config_sched_proto>
 options		CONFIG_SCHED_GRRR		# <config_sched_grrr>
 options		CONFIG_SCHED_FIXEDPRIORITY	# <config_sched_fixedpriority>
 options		CONFIG_SCHED_GRRR_CORE		# <config_sched_grrr,config_sched_fixedpriority>
+options		CONFIG_SCHED_DWRR		# <config_sched_dwrr>
 
 options		CONFIG_SCHED_IDLE_IN_PLACE		# <config_sched_idle_in_place>
 options		CONFIG_GZALLOC			# <config_gzalloc>

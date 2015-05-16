@@ -227,6 +227,9 @@ struct thread {
 	uint16_t			grrr_deficit;		/* fixed point (1/1000th quantum) fractional deficit */
 #endif
 #endif
+#if defined(CONFIG_SCHED_DWRR)
+    uint64_t round_number;
+#endif
 	
 	int16_t				promotions;			/* level of promotion */
 	int16_t				pending_promoter_index;

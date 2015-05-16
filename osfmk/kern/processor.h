@@ -164,6 +164,9 @@ struct processor {
 #if defined(CONFIG_SCHED_GRRR)
 	struct grrr_run_queue	grrr_runq;      /* Group Ratio Round-Robin runq */
 #endif
+#if defined(CONFIG_SCHED_DWRR)
+    struct dwrr_run_queue dwrr_runq;
+#endif
 	processor_meta_t	processor_meta;
 
 	struct ipc_port *	processor_self;	/* port for operations */
